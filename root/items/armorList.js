@@ -1,3 +1,5 @@
+// Coder : E.B.
+// Ideas : Euan ,Owen, Kennedy 
 //the variable name tells what slot it goes in it does not mean it has to be a helmet
 //or have the type helmet it should just make sence in that slot such as for a helmet slot
 //you could use hood or crown

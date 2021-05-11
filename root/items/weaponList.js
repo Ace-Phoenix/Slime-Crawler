@@ -1,3 +1,5 @@
+// Coder : E.B.
+// Ideas : Euan ,Owen, Kennedy 
 //weapon type will be the variable name
 //spellsTombs
 var spellTombs = [  
