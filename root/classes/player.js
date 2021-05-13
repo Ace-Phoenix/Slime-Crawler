@@ -98,4 +98,4 @@ var p = new Player("Name", {current:10,max:10},{x:-10000,y:-1001},{armor:[],weap
 
 setInterval(function(){
     p.posBoundry(p._pos);
-    },100);
+    },1);
