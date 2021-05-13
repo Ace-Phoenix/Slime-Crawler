@@ -5,32 +5,32 @@
 //you could use hood or crown
 var helmetArmors = [
   {
-    name: ,
-    type: ,
-    value: ,
-    desc: ,
-    damRes: ,
+    name: "",
+    type: "",
+    value: "",
+    desc: "",
+    damRes: "",
   }
 ];
 //same thing with the chestArmors it does not have to be a chest plate
 //it could be robes or anything else you can think of
 var chestArmors = [
   {
-    name: ,
-    type: ,
-    value: ,
-    desc: ,
-    damRes: ,
+    name: "",
+    type: "",
+    value: "",
+    desc: "",
+    damRes: "",
   }
 ];
 
 //same thing with the boots
 var bootArmors = [
   {
-    name: ,
-    type: ,
-    value: ,
-    desc: ,
-    damRes: ,
+    name: "",
+    type: "",
+    value: "",
+    desc: "",
+    damRes: "",
   }
 ];

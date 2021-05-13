@@ -75,18 +75,18 @@ checkStats(){
         }
     posBoundry(pos){
         var placeHolder = {x:pos.x,y:pos.y};
-        if (pos.y > 1000) {
-            placeHolder.y = 1000;
+        if (pos.y > 980) {
+            placeHolder.y = 980;
         }
-        if (pos.y < 0) {
-            placeHolder.y = 0;
+        if (pos.y < 20) {
+            placeHolder.y = 20;
         
         }
-        if (pos.x > 1000) {
-            placeHolder.x = 1000;
+        if (pos.x > 980) {
+            placeHolder.x = 980;
         }
-        if (pos.x < 0) {
-          placeHolder.x = 0;
+        if (pos.x < 20) {
+          placeHolder.x = 20;
         }
         this._pos = placeHolder;
         return placeHolder;
@@ -94,8 +94,8 @@ checkStats(){
 }
 
 
-var p = new Player("Name", {current:10,max:10},{x:-10000,y:-1001},{armor:[],weapons:[],misc:[]},{head:{},chest:{},feet:{},weapon:{}});
+var player = new Player("Name", {current:10,max:10},{x:500,y:500},{armor:[],weapons:[],misc:[]},{head:{},chest:{},feet:{},weapon:{}});
 
 setInterval(function(){
-    p.posBoundry(p._pos);
+    player.posBoundry(player._pos);
     },1);
