@@ -17,10 +17,10 @@
 
 class Enemy{
     constructor(pos,stats , name, level, moveset){
-    this.name = name;
-    this._stats = stats
-    this.level = 0;
-    this._pos = pos;
-    this._moveset = moveset;
+        this.name = name;
+        this._stats = stats
+        this.level = 0;
+        this._pos = pos;
+        this._moveset = moveset;
     }
 }

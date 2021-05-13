@@ -7,3 +7,5 @@
 function fileHandeler(){
     
 }
+
+setInterval(fileHandeler,10)
