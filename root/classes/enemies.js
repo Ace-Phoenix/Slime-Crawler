@@ -16,11 +16,11 @@
 ////@param _moveset [object] : the Enemy's movement
 
 class Enemy{
-    constructor(pos,stats , name, level, _moveset){
+    constructor(pos,stats , name, level, moveset){
     this.name = name;
     this._stats = stats
     this.level = 0;
     this._pos = pos;
-    this._moveset = move;
+    this._moveset = moveset;
     }
 }
