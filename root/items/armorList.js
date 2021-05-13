@@ -51,7 +51,7 @@ const bootArmors = [
     level: 1,
     desc: "Simple boots that cushions blows",
     damRes: 1,
-    magic: "none",
+    magic: "none"
   },
   {
     name: "Magic Shoes",
