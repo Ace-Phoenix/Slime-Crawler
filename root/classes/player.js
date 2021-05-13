@@ -15,7 +15,7 @@ class Player{
             if (okStats == true) {
                 this._stats = stats;
             }else{
-              throw new Error("Why?")
+              throw new Error("Why?");
             }
     }
     get pos(){
@@ -73,24 +73,24 @@ checkStats(){
                 return true;
             }
         }
-posBoundry(pos){
-    var placeHolder = {x:pos.x,y:pos.y}
-    if (pos.y > 1000) {
-        placeHolder.y = 1000
-    }
-    if (pos.y < 0) {
-        placeHolder.y = 0;
+    posBoundry(pos){
+        var placeHolder = {x:pos.x,y:pos.y};
+        if (pos.y > 1000) {
+            placeHolder.y = 1000;
+        }
+        if (pos.y < 0) {
+            placeHolder.y = 0;
         
+        }
+        if (pos.x > 1000) {
+            placeHolder.x = 1000;
+        }
+        if (pos.x < 0) {
+          placeHolder.x = 0;
+        }
+        this._pos = placeHolder;
+        return placeHolder;
     }
-    if (pos.x > 1000) {
-        placeHolder.x = 1000;
-    }
-    if (pos.x < 0) {
-        placeHolder.x = 0;
-    }
-    this._pos = placeHolder
-    return placeHolder;
-}
 }
 
 
