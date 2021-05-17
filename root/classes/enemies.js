@@ -110,9 +110,4 @@ posBoundry(pos){
 }
 
 }
-var Enemy = new Enemy("Name", {current:10,max:10},{x:500,y:500},{armor:[],weapons:[],misc:[]},{head:{},chest:{},feet:{},weapon:{}});
 
-setInterval(function(){
-enemy.posBoundry(enemy._pos);
-},1);
-}

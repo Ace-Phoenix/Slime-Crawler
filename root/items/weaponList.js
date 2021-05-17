@@ -2,7 +2,7 @@
 // Ideas : Euan ,Owen, Kennedy 
 //weapon type will be the variable name
 //spellsTombs
-var spellTombs = [  
+var spellTombs = [
 ];
 //swords1h
 var swords1H = [
