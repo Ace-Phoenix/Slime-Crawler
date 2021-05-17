@@ -108,47 +108,42 @@ const chestArmors = [
   {
     name: "Bronze Breastplate",
     type: "chestplate",
-    value: 20,
+    level: 4,
     desc: "We have two words for you: Copper and Tin. The heavenly blend of these 2 metal elements gives you a more of a luxury to protect yourself. Now you can tell monsters to watch out.",
-    icon: "&",
-    damageresist:0.4,
-    level: 1
+    damageresist: 8,
+    magic: "none"
   },
   {
     name: "Iron Breastplate",
     type: "chestplate",
-    value: 25,
+    level: 5,
     desc: "Despite being the most common element on Earth, stronger opponents will cower in fear (at first but then attack you, but you're good since you're using iron. Right?)",
-    icon: "&",
-    damageresist:0.5,
-    level: 1
+    damageresist: 10,
+    magic: "none"
   },
   {
     name: "Steel Breastplate",
     type: "chestplate",
-    value: 30,
+    level: 6,
     desc: "Why use steel for swords and weapons when you can use it for armor. Being the capitalists, I mean, innovators that we are, we brought you the best of worlds: Iron and Carbon",
-    icon: "&",
-    damageresist:0.6,
-    level: 1
+    damageresist: 12,
+    magic: "none"
   },
   {
     name: "Silver Breastplate",
     type: "chestplate",
-    value: 40,
+    level: 7,
     desc: "Silver is good for trading. But it's also good for flexing on other opponenets your high status when you purchase this. Oh and it's good for defending too.",
-    icon: "&",
-    damageresist:0.7,
-    level: 2
+    damageresist: 14,
+    magic: "none"
   },
   {
     name: "Platinum Breastplate",
     type: "chestplate",
-    value: 50,
+    level: 8,
     desc: "We are running out of ideas and metals to exploit so we settled on our last, exciting, better armor. Platinum brings you the highest form of comfort, protection, and durability. Hey kids, don't waste your money on the new iPhone 12. Spend it on this armor!",
-    icon: "&",
-    damageresist:0.8,
-    level: 2
+    damageresist: 16,
+    magic: "none"
   },
   {
     name: "Basic Robe",
