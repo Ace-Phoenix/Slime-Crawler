@@ -6,7 +6,7 @@ var ctxI = cI.getContext("2d");
 ctx.fillStyle = "black";
 ctx.fillRect(0,0,1000,1000);
 //end condision enemies all dead 
-var allLines = {rooms:[],hallways:[]};
+var allLines = {rooms:[],hallways:[],chest:[]};
 
 
 //@function rooms() [Utility : Map Creation]
@@ -80,6 +80,43 @@ function hallways() {
   }
 }
 
+function chests() {
+  for (var i = 0; i < allLines.rooms.length;i++) {
+    var chance = Math.floor((Math.random())*101)
+    if (chance > 25) {
+      var validChest = false;
+      var posibleLocs = [];
+        if (ctx.getImageData(allLines.rooms[i].x-1,allLines.rooms[i].y,20,1).data[0] == 0) {
+            if (ctx.getImageData(allLines.rooms[i].x,allLines.rooms[i].y-1,1,20).data[0] == 0) {
+              validChest = true;
+              posibleLocs.push({x:allLines.rooms[i].x+2,y:allLines.rooms[i].y+2});
+            }
+        }
+        if (ctx.getImageData(allLines.rooms[i].x-1,(allLines.rooms[i].y+allLines.rooms[i].h),1,20).data[0] == 0) {
+            if (ctx.getImageData(allLines.rooms[i].x,(allLines.rooms[i].y+allLines.rooms[i].h)+1,20,1).data[0] == 0) {
+              validChest = true;
+               posibleLocs.push({x:allLines.rooms[i].x+2,y:(allLines.rooms[i].y+allLines.rooms[i].h)-23});
+            }
+        }
+        if (ctx.getImageData((allLines.rooms[i].x+allLines.rooms[i].w)+1,(allLines.rooms[i].y+allLines.rooms[i].h),1,20).data[0] == 0) {
+            if (ctx.getImageData((allLines.rooms[i].x+allLines.rooms[i].w),(allLines.rooms[i].y+allLines.rooms[i].h)+1,20,1).data[0] == 0) {
+              validChest = true;
+              posibleLocs.push({x:(allLines.rooms[i].x+allLines.rooms[i].w)-22,y:(allLines.rooms[i].y+allLines.rooms[i].h)-22});
+            }
+        }
+        var theOne = posibleLocs[Math.floor(Math.random()*posibleLocs.length)];
+if (theOne !== undefined) {
+          allLines.chest.push({x:theOne.x+1,y:theOne.y+1});
+}
+        
+        ctx.beginPath();
+        ctx.strokeStyle = "Black";
+        //ctx.rect();
+      ctx.stroke();
+    }
+  }
+        //code
+}
 function drawMap() {
   if (allLines.rooms.length > 0) {
         for (var j = 0; j < allLines.hallways.length;j++) {
@@ -128,6 +165,18 @@ function drawMap() {
         }
   }
 }
+var stageTime = "New";
+function startRooms() {
+  if (stageTime == "New") {
+rooms();
+hallways();
+chests();
+var randomRoom = Math.floor(Math.random()*allLines.rooms.length)
+    player._pos.x = (allLines.rooms[randomRoom].x+(allLines.rooms[randomRoom].w/2));
+    player._pos.y = (allLines.rooms[randomRoom].y+(allLines.rooms[randomRoom].h/2));
+    stageTime = "Old";
+  }
+}
 
 function drawEverything() {
     
@@ -153,17 +202,68 @@ grd.addColorStop(0.5, "rgba(0,0,0,0.5)");
 grd.addColorStop(1, "rgba(0,0,0,1)");
 
 function fileHandeler(){
+  startRooms();
+  grd = ctx.createRadialGradient(player._pos.x, player._pos.y, 75, player._pos.x, player._pos.y, 100);
+grd.addColorStop(0, "rgba(0,0,0,0)");
+grd.addColorStop(0.5, "rgba(0,0,0,0.5)");
+grd.addColorStop(1, "rgba(0,0,0,1)");
+
   ctx.fillRect(0,0,1000,1000);
   ctx.fillStyle="black";
   ctx.fill();
   drawMap()
-  drawEverything();  
-}
+  drawEverything();
+        for (var chests = 0; chests < allLines.chest.length;chests++) {
+         ctx.beginPath();//begins to draw ai
+        ctx.strokeStyle = "Black";
+        ctx.rect(allLines.chest[chests].x,allLines.chest[chests].y,20,20);
+        ctx.strokeStyle = "rgba(0,0,0,0)";//blue
+        ctx.strokeStyle = "Black";
+grd = ctx.createRadialGradient(player._pos.x, player._pos.y, 75, player._pos.x, player._pos.y, 100);
+grd.addColorStop(0, "rgba(0,255,0,1)");
+grd.addColorStop(0.5, "rgba(0,255,0,1)");
+grd.addColorStop(1, "rgba(0,0,0,1)");
 
+        ctx.fillStyle = grd;//blue
+        ctx.fillRect(allLines.chest[chests].x+1,allLines.chest[chests].y+1,18,18);
+        ctx.font = "12px Comic Sans MS";
+        grd = ctx.createRadialGradient(player._pos.x, player._pos.y, 75, player._pos.x, player._pos.y, 100);
+        grd.addColorStop(0, "Hotpink");
+        grd.addColorStop(0.5, "rgb(100,100,255)");
+        grd.addColorStop(1, "rgba(0,0,0,1)");
+        ctx.fillStyle = grd;
+
+        ctx.fillText("C : " + chests,allLines.chest[chests].x,allLines.chest[chests].y+30);
+        ctx.stroke();
+    }
+        for (var r = 0; r < allLines.rooms.length;r++) {
+         ctx.beginPath();//begins to draw ai
+        ctx.strokeStyle = "Black";
+        grd = ctx.createRadialGradient(player._pos.x, player._pos.y, 75, player._pos.x, player._pos.y, 100);
+        grd.addColorStop(0, "magenta");
+        grd.addColorStop(0.5, "rgb(100,100,255)");
+        grd.addColorStop(1, "rgba(0,0,0,1)");
+        ctx.font = "12px Comic Sans MS";
+
+        ctx.fillStyle = grd;
+        ctx.fillText("R : " + r,allLines.rooms[r].x,allLines.rooms[r].y);
+        ctx.stroke();
+    }
+
+  ctx.fillStyle="black";
+
+
+}
+var radius = 11;
 window.addEventListener("keydown",keyHandler);
 function keyHandler(e){
 if (e.keyCode == 65) {//a
+  if ((ctx.getImageData(player._pos.x-13,player._pos.y,1,1).data[0] !== 0)&&(
+(ctx.getImageData(player._pos.x+13,player._pos.y,1,1).data[0] !== 0) ||
+(ctx.getImageData(player._pos.x,player._pos.y-13,1,1).data[0] !== 0) ||
+(ctx.getImageData(player._pos.x,player._pos.y+13,1,1).data[0] !== 0))) {
     player._pos.x-=2;
+}
   grd = ctx.createRadialGradient(player._pos.x, player._pos.y, 75, player._pos.x, player._pos.y, 100);
 grd.addColorStop(0, "rgba(0,0,0,0)");
 grd.addColorStop(0.5, "rgba(0,0,0,0.5)");
@@ -171,7 +271,12 @@ grd.addColorStop(1, "rgba(0,0,0,1)");
 
 }
 if (e.keyCode == 83) {//s
+  if ((ctx.getImageData(player._pos.x,player._pos.y+13,1,1).data[0] !== 0)&&(
+(ctx.getImageData(player._pos.x-13,player._pos.y,1,1).data[0] !== 0) ||
+(ctx.getImageData(player._pos.x,player._pos.y-13,1,1).data[0] !== 0) ||
+(ctx.getImageData(player._pos.x+13,player._pos.y,1,1).data[0] !== 0))) {
     player._pos.y+=2;
+      }
   grd = ctx.createRadialGradient(player._pos.x, player._pos.y, 75, player._pos.x, player._pos.y, 100);
 grd.addColorStop(0, "rgba(0,0,0,0)");
 grd.addColorStop(0.5, "rgba(0,0,0,0.5)");
@@ -179,7 +284,13 @@ grd.addColorStop(1, "rgba(0,0,0,1)");
 
 }
 if (e.keyCode == 68) {//d
+  if ((ctx.getImageData(player._pos.x+13,player._pos.y,1,1).data[0] !== 0)&&(
+(ctx.getImageData(player._pos.x-13,player._pos.y,1,1).data[0] !== 0) ||
+(ctx.getImageData(player._pos.x,player._pos.y-13,1,1).data[0] !== 0) ||
+(ctx.getImageData(player._pos.x,player._pos.y+13,1,1).data[0] !== 0))) {
+    //code
     player._pos.x+=2;
+  }
   grd = ctx.createRadialGradient(player._pos.x, player._pos.y, 75, player._pos.x, player._pos.y, 100);
 grd.addColorStop(0, "rgba(0,0,0,0)");
 grd.addColorStop(0.5, "rgba(0,0,0,0.5)");
@@ -187,12 +298,32 @@ grd.addColorStop(1, "rgba(0,0,0,1)");
 
 }
 if (e.keyCode == 87) {//w
+  if ((ctx.getImageData(player._pos.x,player._pos.y-13,1,1).data[0] !== 0)&&(
+(ctx.getImageData(player._pos.x-13,player._pos.y,1,1).data[0] !== 0) ||
+(ctx.getImageData(player._pos.x+13,player._pos.y,1,1).data[0] !== 0) ||
+(ctx.getImageData(player._pos.x,player._pos.y+13,1,1).data[0] !== 0))) {
     player._pos.y-=2;
+  }
   grd = ctx.createRadialGradient(player._pos.x, player._pos.y, 75, player._pos.x, player._pos.y, 100);
 grd.addColorStop(0, "rgba(0,0,0,0)");
 grd.addColorStop(0.5, "rgba(0,0,0,0.5)");
 grd.addColorStop(1, "rgba(0,0,0,1)");
 
+}
+  if (ctx.getImageData(player._pos.x,player._pos.y-13,1,1).data[0] == 0){
+    player._pos.y+=2;
+
+  }
+if(ctx.getImageData(player._pos.x-13,player._pos.y,1,1).data[0] == 0){
+    player._pos.x +=2;
+
+}
+if(ctx.getImageData(player._pos.x+13,player._pos.y,1,1).data[0] == 0){
+    player._pos.x-=2;
+
+}
+if(ctx.getImageData(player._pos.x,player._pos.y+13,1,1).data[0] == 0){
+    player._pos.y-=2;
 }
 if (e.keyCode == 73) {//i
   if (cI.style.visibility == "hidden") {
