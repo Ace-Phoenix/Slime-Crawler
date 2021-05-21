@@ -158,11 +158,67 @@ const chestArmors = [
 //same thing with the boots
 const bootArmors = [
   {
-    name: "Basic Shoes",
+    name: "Leather Legs",
     type: "boot",
     level: 1,
-    desc: "Simple boots that cushions blows",
-    damRes: 1,
+    desc:"Low damege protection",
+    damageresist: 1,
+    magic: "none"
+  },
+  {
+    name: "ChainMail Legs",
+    type: "boot",
+    level: 2,
+    desc:"higher damege protection then Leather",
+    damageresist: 2,
+    magic: "none"
+  },
+  {
+    name: "Copper Legs",
+    type: "boot",
+    level: 3,
+    desc:"higher damege protection then ChainMail",
+    damageresist: 3,
+    magic: "none"
+  },
+  {
+    name: "Bronze Legs",
+    type: "boot",
+    level: 4,
+    desc:"higher damege protection then Copper",
+    damageresist: 4,
+    magic: "none"
+  },
+  {
+    name: "Iron Legs",
+    type: "boot",
+    level: 5,
+    desc:"higher damege protection then Bronze",
+    damageresist: 5,
+    magic: "none"
+  },
+  {
+    name: "Steel Legs",
+    type: "boot",
+    level: 6,
+    desc:"higher damege protection then Iron",
+    damageresist: 6,
+    magic: "none"
+  },
+  {
+    name: "Silver Legs",
+    type: "boot",
+    level: 7,
+    desc:"higher damege protection then Steel",
+    damageresist: 7,
+    magic: "none"
+  },
+  {
+    name: "Platinum Legs",
+    type: "boot",
+    level: 8,
+    desc:"Max damege protection",
+    damageresist: 8,
     magic: "none"
   },
   {
