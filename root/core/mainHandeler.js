@@ -1,7 +1,7 @@
 //M.M.
-var c = document.getElementById("gameCanvas");//canvas variables
+var c = document.getElementsByClassName("gameCanvas")[0];//canvas variables
 var ctx = c.getContext("2d");
-var cI = document.getElementById("inventoryCanvas");
+var cI = document.getElementsByClassName("inventoryCanvas")[0];
 var ctxI = cI.getContext("2d");
 ctx.fillStyle = "black";
 ctx.fillRect(0,0,1000,1000);
