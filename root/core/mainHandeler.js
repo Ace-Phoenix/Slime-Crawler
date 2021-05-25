@@ -3,11 +3,32 @@ var c = document.getElementsByClassName("gameCanvas")[0];//canvas variables
 var ctx = c.getContext("2d");
 var cI = document.getElementsByClassName("inventoryCanvas")[0];
 var ctxI = cI.getContext("2d");
+var cC = document.getElementsByClassName("chestCanvas")[0];
+var ctxC = cC.getContext("2d");
 ctx.fillStyle = "black";
 ctx.fillRect(0,0,1000,1000);
 //end condision enemies all dead 
 var allLines = {rooms:[],hallways:[],chest:[]};
-
+var contains = [];
+var currentChest = [];
+//function iconsRandC [Utility : box forming : Rows and Collums]
+function iconsRandC(ctx,rows,collums,start,gap,size,fill) {
+var itterFill = 0;
+var inside = [];
+    for (var i = 0; i < rows;i++) {
+        for (var j = 0; j < collums;j++) {
+               ctxI.beginPath();
+               if (fill !== undefined){
+                   if (itterFill !== fill.length) {
+                      inside.push({locParams:{x:start.x+gap*j+size*j,y:start.y + gap * i+size*i,widthHight:size},conts:fill[itterFill]});
+                   }
+               }
+               ctx.fillRect(start.x+gap*j+size*j,start.y + gap * i+size*i,size,size);
+               ctx.fillStyle = 'white';
+               ctx.stroke();
+        }
+    }
+}
 
 //@function rooms() [Utility : Map Creation]
 //@restricted roomNumber [Hidden : Value : Param : Unchangable] {max : 25, min: 10};
@@ -257,12 +278,14 @@ grd.addColorStop(1, "rgba(0,0,0,1)");
 var radius = 11;
 window.addEventListener("keydown",keyHandler);
 function keyHandler(e){
+  var pXadd = 0;
+  var pYadd = 0;
 if (e.keyCode == 65) {//a
   if ((ctx.getImageData(player._pos.x-13,player._pos.y,1,1).data[0] !== 0)&&(
 (ctx.getImageData(player._pos.x+13,player._pos.y,1,1).data[0] !== 0) ||
 (ctx.getImageData(player._pos.x,player._pos.y-13,1,1).data[0] !== 0) ||
 (ctx.getImageData(player._pos.x,player._pos.y+13,1,1).data[0] !== 0))) {
-    player._pos.x-=2;
+    pXadd = -2;
 }
   grd = ctx.createRadialGradient(player._pos.x, player._pos.y, 75, player._pos.x, player._pos.y, 100);
 grd.addColorStop(0, "rgba(0,0,0,0)");
@@ -275,7 +298,7 @@ if (e.keyCode == 83) {//s
 (ctx.getImageData(player._pos.x-13,player._pos.y,1,1).data[0] !== 0) ||
 (ctx.getImageData(player._pos.x,player._pos.y-13,1,1).data[0] !== 0) ||
 (ctx.getImageData(player._pos.x+13,player._pos.y,1,1).data[0] !== 0))) {
-    player._pos.y+=2;
+    pYadd=2;
       }
   grd = ctx.createRadialGradient(player._pos.x, player._pos.y, 75, player._pos.x, player._pos.y, 100);
 grd.addColorStop(0, "rgba(0,0,0,0)");
@@ -289,7 +312,7 @@ if (e.keyCode == 68) {//d
 (ctx.getImageData(player._pos.x,player._pos.y-13,1,1).data[0] !== 0) ||
 (ctx.getImageData(player._pos.x,player._pos.y+13,1,1).data[0] !== 0))) {
     //code
-    player._pos.x+=2;
+    pXadd = 2;
   }
   grd = ctx.createRadialGradient(player._pos.x, player._pos.y, 75, player._pos.x, player._pos.y, 100);
 grd.addColorStop(0, "rgba(0,0,0,0)");
@@ -302,7 +325,7 @@ if (e.keyCode == 87) {//w
 (ctx.getImageData(player._pos.x-13,player._pos.y,1,1).data[0] !== 0) ||
 (ctx.getImageData(player._pos.x+13,player._pos.y,1,1).data[0] !== 0) ||
 (ctx.getImageData(player._pos.x,player._pos.y+13,1,1).data[0] !== 0))) {
-    player._pos.y-=2;
+    pYadd = -2;
   }
   grd = ctx.createRadialGradient(player._pos.x, player._pos.y, 75, player._pos.x, player._pos.y, 100);
 grd.addColorStop(0, "rgba(0,0,0,0)");
@@ -311,19 +334,19 @@ grd.addColorStop(1, "rgba(0,0,0,1)");
 
 }
   if (ctx.getImageData(player._pos.x,player._pos.y-13,1,1).data[0] == 0){
-    player._pos.y+=2;
+    pYadd=1;
 
   }
 if(ctx.getImageData(player._pos.x-13,player._pos.y,1,1).data[0] == 0){
-    player._pos.x +=2;
+    pXadd =1;
 
 }
 if(ctx.getImageData(player._pos.x+13,player._pos.y,1,1).data[0] == 0){
-    player._pos.x-=2;
+   pXadd = -1;
 
 }
 if(ctx.getImageData(player._pos.x,player._pos.y+13,1,1).data[0] == 0){
-    player._pos.y-=2;
+   pYadd = -1;
 }
 if (e.keyCode == 73) {//i
   if (cI.style.visibility == "hidden") {
@@ -334,8 +357,35 @@ if (e.keyCode == 73) {//i
   return cI.style.visibility = "hidden";
   }
 }
+if (pXadd !== 0) {
+    player._pos.x += pXadd;
+    if (ctx.getImageData(player._pos.x-20,player._pos.y,1,1).data[1] == 255 && ctx.getImageData(player._pos.x-20,player._pos.y,1,1).data[0] == 0) {        
+        cC.style.visibility = "visible";
+    }else if (ctx.getImageData(player._pos.x+20,player._pos.y,1,1).data[1] == 255 && ctx.getImageData(player._pos.x+20,player._pos.y,1,1).data[0] == 0) {
+        cC.style.visibility = "visible";
+    }else{
+        cC.style.visibility = "hidden";
+
+    }
+}if (pYadd !== 0) {
+    player._pos.y += pYadd;
+    if (ctx.getImageData(player._pos.x,player._pos.y-20,1,1).data[1] == 255 && ctx.getImageData(player._pos.x,player._pos.y-20,1,1).data[0] == 0) {
+        cC.style.visibility = "visible";
+    }else if (ctx.getImageData(player._pos.x,player._pos.y+20,1,1).data[1] == 255 && ctx.getImageData(player._pos.x,player._pos.y+20,1,1).data[0] == 0) {
+        cC.style.visibility = "visible";
+    }else{
+        cC.style.visibility = "hidden";
+
+    }
+
+}
 }
 
+function chestInv() {
 
+iconsRandC(ctxC,16,8,{x:20,y:70},10,46,currentChest);
 
+}
+
+setInterval(chestInv,100);
 setInterval(fileHandeler,10)
