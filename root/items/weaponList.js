@@ -23,6 +23,13 @@ const swords1H = [
     moveSet: [{name: "Slash", description: "A slash attack",effect: {type: "slash", dam: 1, time: 2, conditions: {end: "heal", start: "slash",}},cost: 5,cooldown: 2}],
   }
 
+  {
+    name: "War Sword",
+    type: "swords1H",
+    level: 1,
+    desc: ""
+  }
+
 
 ];
 //swords2h
@@ -34,6 +41,15 @@ const swords2H = [
     desc: "a big high damage dealing sword",
     dam: 3,
     magic: "none"}
+
+  {
+    name: "Magic Sword",
+    type: "swords2H",
+    level: 1,
+    desc: "a high damage dealing sword with magic abilities",
+    dam: 3,
+    magic:
+  }
 
 ];
 //blunt1h
