@@ -188,7 +188,7 @@ const swords2H = [
     dam: 3,
     damageType: "Slash",
     moveSet: [{name: "Slash", description: "A slash attack",effect: {type: "slash", dam: 1, time: 2, conditions: {end: "heal", start: "slash",}},cost: 5,cooldown: 2}]
-    }
+    },
   {
     name: "Glave",
     type: "swords2H",
@@ -207,16 +207,6 @@ const swords2H = [
     damageType: "Slash",
     moveSet: [{name: "Slash", description: "A slash attack",effect: {type: "slash", dam: 1, time: 2, conditions: {end: "heal", start: "slash",}},cost: 5,cooldown: 2}]
     }
-
-  {
-    name: "Magic Sword",
-    type: "swords2H",
-    level: 1,
-    desc: "a high damage dealing sword with magic abilities",
-    dam: 3,
-    magic:
-  }
-
 ];
 //blunt1h
 const blunt1H = [
@@ -228,7 +218,7 @@ const blunt1H = [
    dam: 2,
    damageType: "Impact",
     moveSet: [{name: "Slash", description: "A slash attack",effect: {type: "slash", dam: 1, time: 2, conditions: {end: "heal", start: "slash",}},cost: 5,cooldown: 2}]
-   }
+   },
 {
    name: "Steel Mace",
    type: "blunt1H",
@@ -237,7 +227,7 @@ const blunt1H = [
    dam: 2,
    damageType: "Impact",
     moveSet: [{name: "Slash", description: "A slash attack",effect: {type: "slash", dam: 1, time: 2, conditions: {end: "heal", start: "slash",}},cost: 5,cooldown: 2}]
-   }
+   },
 
 {
    name: "Shadow-Steel Mace",
@@ -247,7 +237,7 @@ const blunt1H = [
    dam: 2,
    damageType: "Impact",
     moveSet: [{name: "Slash", description: "A slash attack",effect: {type: "slash", dam: 1, time: 2, conditions: {end: "heal", start: "slash",}},cost: 5,cooldown: 2}]
-   }
+   },
 
 {
    name: "Mallet",
