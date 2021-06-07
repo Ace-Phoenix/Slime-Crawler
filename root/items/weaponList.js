@@ -170,7 +170,6 @@ const swords1H = [
     decs: "a simple one handed sword",
     moveSet: [{name: "Slash", description: "A slash attack",effect: {type: "slash", dam: 1, time: 2, conditions: {end: "heal", start: "slash",}},cost: 5,cooldown: 2}]
   },
-
   {
     name: "Whip",
     type: "swords1H",
@@ -208,6 +207,15 @@ const swords2H = [
     damageType: "Slash",
     moveSet: [{name: "Slash", description: "A slash attack",effect: {type: "slash", dam: 1, time: 2, conditions: {end: "heal", start: "slash",}},cost: 5,cooldown: 2}]
     }
+
+  {
+    name: "Magic Sword",
+    type: "swords2H",
+    level: 1,
+    desc: "a high damage dealing sword with magic abilities",
+    dam: 3,
+    magic:
+  }
 
 ];
 //blunt1h
