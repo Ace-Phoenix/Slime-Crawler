@@ -1,0 +1,19 @@
+---Player Stats---
+-Player Name- = ""
+-Player Level- = 0
+-Player Stage- = 0
+------------------
+
+---Player Equiped---
+-Helmet Slot- = ""
+-Chest Slot- = ""
+-Boot Slot- = ""
+-Misc Slot- = ""
+-Weapon Slot #1- = ""
+-Weapon Slot #2- = ""
+-Weapon Slot #3- = "" 
+---------------------
+
+---Player Inventory---
+
+

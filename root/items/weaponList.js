@@ -261,7 +261,7 @@ const blunt2H = [
      dam: 4,
      damageType: "Impact",
     moveSet: [{name: "Slash", description: "A slash attack",effect: {type: "slash", dam: 1, time: 2, conditions: {end: "heal", start: "slash",}},cost: 5,cooldown: 2}]
-  }
+  },
   {
      name: "Holly Stick",
      type: "blunt2H",
@@ -270,7 +270,7 @@ const blunt2H = [
      dam: 4,
      damageType: "Impact",
     moveSet: [{name: "Slash", description: "A slash attack",effect: {type: "slash", dam: 1, time: 2, conditions: {end: "heal", start: "slash",}},cost: 5,cooldown: 2}]
-  }
+  },
   {
      name: "Begone Rod",
      type: "blunt2H",
@@ -279,7 +279,7 @@ const blunt2H = [
      dam: 4,
      damageType: "Impact",
     moveSet: [{name: "Slash", description: "A slash attack",effect: {type: "slash", dam: 1, time: 2, conditions: {end: "heal", start: "slash",}},cost: 5,cooldown: 2}]
-  }
+  },
   {
      name: "US Flag",
      type: "blunt2H",

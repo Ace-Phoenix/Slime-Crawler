@@ -26,8 +26,10 @@ var inside = [];
                ctx.fillRect(start.x+gap*j+size*j,start.y + gap * i+size*i,size,size);
                ctx.fillStyle = 'white';
                ctx.stroke();
+              inside.push({locParams:{x:start.x+gap*j+size*j,y:start.y + gap * i+size*i,widthHight:size},conts:"No  Item"});
         }
     }
+    return inside;
 }
 
 //@function rooms() [Utility : Map Creation]

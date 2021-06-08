@@ -53,12 +53,34 @@ function topIcons() {
 
 }
 
+var pointing = {x:50,y:50} 
+var pointText = "?";
+var itemBoxes=iconsRandC(ctxI,11,7,{x:20,y:265},20,45);
+cI.addEventListener("mousedown",hoverTells);
+
+ function hoverTells(e) { 
+    pointText = "No Item";
+    console.log(e);
+    
+    pointing = {x:e.offsetX,y:e.offsetY};
+    for (var i = 0; i < itemBoxes.length;i++) {
+        if (e.offsetX >= itemBoxes[i].locParams.x && e.offsetX <= (itemBoxes[i].locParams.x+itemBoxes[i].locParams.widthHeight)) {
+            if (e.offsetY >= itemBoxes[i].locParams.y && e.offsetY <= (itemBoxes[i].locParams.y+itemBoxes[i].locParams.widthHeight)) {
+            pointText = itemBoxes[i].conts;
+            }
+        }
+    }
+}
 
 
 function inventoryHandeler(){
     ctxI.clearRect(0,0,480,980)
     topIcons();
     iconsRandC(ctxI,11,7,{x:20,y:265},20,45);
+    
+    ctxI.strokeText(pointText,pointing.x,pointing.y);
 }
+
+
 
 setInterval(inventoryHandeler,100);
