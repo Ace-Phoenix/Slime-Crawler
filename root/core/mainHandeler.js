@@ -20,7 +20,8 @@ var inside = [];
                ctxI.beginPath();
                if (fill !== undefined){
                    if (itterFill !== fill.length) {
-                      inside.push({locParams:{x:start.x+gap*j+size*j,y:start.y + gap * i+size*i,widthHight:size},conts:fill[itterFill]});
+                      inside.push({locParams:{x:start.x+gap*j+size*j,y:start.y + gap * i+size*i,widthHeight:size},conts:fill[itterFill]});
+                      itterFill++;
                    }
                }
                ctx.fillRect(start.x+gap*j+size*j,start.y + gap * i+size*i,size,size);
