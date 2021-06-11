@@ -176,7 +176,6 @@ if (theOne !== undefined) {
       ctx.stroke();
     }
   }
-        //code
 }
 
 //@function drawMap [Utility : Ultimate Map Creation]
