@@ -12,24 +12,33 @@ var ctxC = cC.getContext("2d");//Chest Canvas Variable
   var allLines = {rooms:[],hallways:[],chest:[]};//Placeholder Variable
   var contains = [];//Placeholder Variable
   var currentChest = [];//placeholder variable
+  var chestNumb = 0;
 
   //function iconsRandC [Utility : box forming : Rows and Collums]
   function iconsRandC(ctx,rows,collums,start,gap,size,fill) {
+    var itteratorNumber = 0;
     var itterFill = 0;//itter
     var inside = [];//placeholder
+    var tf = true;
       for (var i = 0; i < rows;i++) {//counting rows
         for (var j = 0; j < collums;j++) {//counting collums
+            tf = false;
             ctxI.beginPath();//start of canvas drawing 
                if (fill !== undefined){//there is a fill
                    if (itterFill !== fill.length) {// it is not at  max [makeshift While Loop]
-                      inside.push({locParams:{x:start.x+gap*j+size*j,y:start.y + gap * i+size*i,widthHeight:size},conts:fill[itterFill]});//push
+                      tf = true;
+                      inside.push({locParams:{x:start.x+gap*j+size*j,y:start.y + gap * i+size*i,widthHeight:size},conts:fill[itterFill],num:itteratorNumber});//push
                       itterFill++;//itter
+                   
                    }
                }
             ctx.fillRect(start.x+gap*j+size*j,start.y + gap * i+size*i,size,size);
             ctx.fillStyle = 'white';
             ctx.stroke();
-          inside.push({locParams:{x:start.x+gap*j+size*j,y:start.y + gap * i+size*i,widthHight:size},conts:"No  Item"});
+            if (tf == false) {
+          inside.push({locParams:{x:start.x+gap*j+size*j,y:start.y + gap * i+size*i,widthHight:size},conts:"No  Item",num:itteratorNumber});
+            }
+          itteratorNumber++;
         }
       }
     return inside;
@@ -406,6 +415,7 @@ function keyHandler(e){//simple handeler for the moverment and what not
 
 //@function changeCurrent [Utility : Update Function]
 function changeCurrent() {
+  var k = 0;
     var closest = allLines.chest[0];
       for (var i = 1; i < allLines.chest.length;i++) {
         var newxDist = Math.abs(allLines.chest[i].x-player._pos.x);
@@ -414,19 +424,33 @@ function changeCurrent() {
         var oldyDist = Math.abs(closest.y-player._pos.y);
           if (newxDist < oldxDist && newyDist < oldyDist) {
             closest = allLines.chest[i];
+            k=i;
           }
       }
+      chestNum=k;
         contains = closest.conts;
         currentChest = closest;
       return closest;
 }
 
+//@function newArray [Utility : Array removing] : simply removes a part of an array and makes a new one
+  function newArray(array,removePlace) {
+    array[removePlace].conts = "No Item";
+    console.log(removePlace)
+    var newArray = [];
+    for (var i = 0; i < array.length-1; i++) {
+            newArray.push(array[i]);
+    }
+    return newArray;
+  }
+  
+
 var chestText = "?";//appeared text
 var chestPoint = {x:25,y:25};//text location
 var itemC = [];//item displayed
+var citemBoxes = iconsRandC(ctxC,4,2,{x:35,y:80},40,184,currentChest.conts);
 cC.addEventListener("mousemove",chestHover);//Event for adding name when moving mouse 
   function chestHover(e) {
-      var citemBoxes = iconsRandC(ctxC,4,2,{x:35,y:80},40,184,currentChest.conts);
         chestText = "No Item";
         chestPoint = {x:e.offsetX,y:e.offsetY};
           for (var i = 0; i < citemBoxes.length;i++) {
@@ -438,7 +462,38 @@ cC.addEventListener("mousemove",chestHover);//Event for adding name when moving 
             }
           }
   }
+  
+  function test(saveItem){
+    var arr = [];
+    for (var j = 0; j < allLines.chest[chestNum].conts.length;j++) {
+      if (saveItem == allLines.chest[chestNum].conts[j]) {
+                            
+      }else{
+        arr.push(allLines.chest[chestNum].conts[j]);
+      }
+    }
+   return arr;
+  }
 
+cC.addEventListener("mousedown",chestClick);//Event for adding name when moving mouse 
+  function chestClick(e) {
+        chestPoint = {x:e.offsetX,y:e.offsetY};
+          for (var i = 0; i < citemBoxes.length;i++) {
+            if (e.offsetX >= citemBoxes[i].locParams.x && e.offsetX <= (citemBoxes[i].locParams.x+citemBoxes[i].locParams.widthHeight)) {
+              if (e.offsetY >= citemBoxes[i].locParams.y && e.offsetY <= (citemBoxes[i].locParams.y+citemBoxes[i].locParams.widthHeight)) {
+                var saveItem = citemBoxes[i].conts;
+                if (citemBoxes[i].conts !== "No Item") {
+                  console.log(citemBoxes);
+                  if (saveItem !== "No Item") {
+                  player.items.push(saveItem);
+                  allLines.chest[chestNum].conts = test(saveItem);
+                  }
+                  citemBoxes = newArray(citemBoxes,i);
+                }
+              }
+            }
+          }
+  }
 //@function chestHandeler [Utility : Chest Updates]
   function chestHandeler() {
     ctxC.clearRect(0,0,3000,3000);
@@ -451,6 +506,13 @@ cC.addEventListener("mousemove",chestHover);//Event for adding name when moving 
         ctxC.strokeStyle = "black";
         ctxC.fillStyle = "White";
   }
+  
+    function periodicUpdateC() {
+     citemBoxes=iconsRandC(ctxC,4,2,{x:35,y:80},40,184,currentChest.conts);
+   }
+
+
 setInterval(fileHandeler,10);
-setInterval(chestHandeler,10);
 setInterval(changeCurrent,10);
+setInterval(periodicUpdateC,500);
+setInterval(chestHandeler,50);

@@ -94,7 +94,7 @@ checkStats(){
 }
 
 
-var player = new Player("Name", {current:10,max:10},{x:500,y:500},[],{head:{},chest:{},feet:{},weapon:{}});
+var player = new Player("Name", {current:10,max:10},{x:500,y:500},[],{head:"No Item",chest:"No Item",feet:"No Item",misc:"No Item",weapon:{slotOne:"No Item",slotTwo:"No Item",slotThree:"No Item"}});
 
 setInterval(function(){
     player.posBoundry(player._pos);

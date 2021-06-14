@@ -5,8 +5,8 @@
 const magicWeapons = [
   {
     name: "Fire Tome", //name//0
-    type: "spellTomes", //type of weapon
-    decs: "throw the firetomb at the enemy to deal damage", // A short description of the item
+    type: "spellTome", //type of weapon
+    desc: "throw the firetomb at the enemy to deal damage", // A short description of the item
     level: 1,
     damageType: "magic:fire",
     moveSet: [
@@ -35,7 +35,7 @@ const magicWeapons = [
   {
     name: "Lightning Hand", //name//0
     type: "spellTome", //type of weapon
-    decs: "Lightning Hands!!!!", // A short description of the item
+    desc: "Lightning Hands!!!!", // A short description of the item
     level: 1,
     magic: "magic:lightning",
     moveSet: [
@@ -64,7 +64,7 @@ const magicWeapons = [
   {
     name: "Fire Staff", //name//0
     type: "magicStaff", //type of weapon
-    decs: "throw the staff at the enemy to deal damage", // A short description of the item
+    desc: "throw the staff at the enemy to deal damage", // A short description of the item
     level: 1,
     damageType: "magic:fire",
     moveSet: [
@@ -93,7 +93,7 @@ const magicWeapons = [
     {
     name: "Water Staff", //name//0
     type: "magicStaff", //type of weapon
-    decs: "throw Water at the enemy to deal damage", // A short description of the item
+    desc: "throw Water at the enemy to deal damage", // A short description of the item
     level: 1,
     damageType: "magic:water",
     moveSet: [
@@ -122,7 +122,7 @@ const magicWeapons = [
     {
     name: "Electric Staff", //name//0
     type: "magicStaff", //type of weapon
-    decs: "Elctro Rod Thing", // A short description of the item
+    desc: "Elctro Rod Thing", // A short description of the item
     level: 1,
     damageType: "magic:electric",
     moveSet: [
@@ -151,7 +151,7 @@ const magicWeapons = [
     {
     name: "Wind Staff", //name//0
     type: "magicStaff", //type of weapon
-    decs: "Windy", // A short description of the item
+    desc: "Windy", // A short description of the item
     level: 1,
     damageType: "magic:physical",
     moveSet: [
@@ -180,7 +180,7 @@ const magicWeapons = [
     {
     name: "Water Tome", //name//0
     type: "spellTome", //type of weapon
-    decs: "Water infused book from the long lost city of Atlantis cured with the powers of the ice god", // A short description of the item
+    desc: "Water infused book from the long lost city of Atlantis cured with the powers of the ice god", // A short description of the item
     level: 1,
     damageType: "magic:water",
     moveSet: [
@@ -209,7 +209,7 @@ const magicWeapons = [
     {
     name: "Electric Tome", //name//0
     type: "spellTome", //type of weapon
-    decs: "A book made by Zeus", // A short description of the item
+    desc: "A book made by Zeus", // A short description of the item
     level: 1,
     damageType: "magic:electric",
     moveSet: [
@@ -238,7 +238,7 @@ const magicWeapons = [
     {
     name: "Physical Tome", //name//0
     type: "spellTome", //type of weapon
-    decs: "A devilish creation a living book with the taste of a vampire", // A short description of the item
+    desc: "A devilish creation a living book with the taste of a vampire", // A short description of the item
     level: 1,
     damageType: "magic:physical",
     moveSet: [
@@ -267,7 +267,7 @@ const magicWeapons = [
     {
     name: "Saxophone", //name//0
     type: "spellTome", //type of weapon
-    decs: "With the power of smooth jazz anything is possible", // A short description of the item
+    desc: "With the power of smooth jazz anything is possible", // A short description of the item
     level: 1,
     damageType: "fire",
     moveSet: [
@@ -296,7 +296,7 @@ const magicWeapons = [
     {
     name: "Minion Explosive Wand", //name//0
     type: "spellTome", //type of weapon
-    decs: "Summon explosive minions", // A short description of the item
+    desc: "Summon explosive minions", // A short description of the item
     level: 1,
     damageType: "magic:explosive",
     moveSet: [
@@ -452,7 +452,7 @@ const swords1H = [
     name: "dagger",
     type: "swords1H",
     level: 1,
-    decs: "A dagger with a hidden secret",
+    desc: "A dagger with a hidden secret",
     damageType: "physical:slash",
     moveSet: [
     {name: "Sneak Attack",
@@ -481,7 +481,7 @@ const swords1H = [
     name: "Falchion",
     type: "swords1H",
     level: 1,
-    decs: "a simple one handed sword",
+    desc: "a simple one handed sword",
     damageType: "physical:slash",
     moveSet: [
     {name: "Quick Slice",
@@ -510,7 +510,7 @@ const swords1H = [
     name: "Whip",
     type: "swords1H",
     level: 1,
-    decs: "a whip not much can be said about it",
+    desc: "a whip not much can be said about it",
     damageType: "physical:slash",
     moveSet: [
     {name: "Whip",
