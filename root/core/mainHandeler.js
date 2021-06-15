@@ -1,5 +1,5 @@
 //M.M.
-var gameState = "Combat";
+var gameState = "Play";
 
 var c = document.getElementsByClassName("gameCanvas")[0];//Main Canvas variable
 var ctx = c.getContext("2d");//Main canvas variable
