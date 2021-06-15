@@ -1,4 +1,5 @@
 //M.M.
+var gameState = "Combat";
 
 var c = document.getElementsByClassName("gameCanvas")[0];//Main Canvas variable
 var ctx = c.getContext("2d");//Main canvas variable
@@ -272,6 +273,7 @@ grd.addColorStop(1, "rgba(0,0,0,1)");
 
 //@master --function-- [Utility : Update Handeler]
 function fileHandeler(){
+  if (gameState == "Play") {
   startRooms();
     grd = ctx.createRadialGradient(player._pos.x, player._pos.y, 75, player._pos.x, player._pos.y, 100);//anything with grd is gradient forming
     grd.addColorStop(0, "rgba(0,0,0,0)");
@@ -316,6 +318,7 @@ function fileHandeler(){
           ctx.stroke();
         }
   ctx.fillStyle="black";
+  }
 }
 
 var radius = 11;//not used i think?
@@ -415,6 +418,7 @@ function keyHandler(e){//simple handeler for the moverment and what not
 
 //@function changeCurrent [Utility : Update Function]
 function changeCurrent() {
+  if (gameState == "Play") {
   var k = 0;
     var closest = allLines.chest[0];
       for (var i = 1; i < allLines.chest.length;i++) {
@@ -431,6 +435,7 @@ function changeCurrent() {
         contains = closest.conts;
         currentChest = closest;
       return closest;
+  }
 }
 
 //@function newArray [Utility : Array removing] : simply removes a part of an array and makes a new one
@@ -511,8 +516,76 @@ cC.addEventListener("mousedown",chestClick);//Event for adding name when moving 
      citemBoxes=iconsRandC(ctxC,4,2,{x:35,y:80},40,184,currentChest.conts);
    }
 
+  function combatPhase() {
+    if (gameState == "Combat") {
+    ctx.fillStyle = "Black";
+    ctx.fillRect(0,0,1000,1000);  
+    ctx.fillStyle = "Green";
+    ctx.fillRect(25,25,300,40);
+    ctx.fillStyle = "Red";
+    ctx.fillRect(675,25,300,40);
+    ctx.beginPath();
+    ctx.strokeStyle = "White";
+    ctx.moveTo(500,0);
+    ctx.lineTo(500,1000);
+    ctx.stroke();
+    ctx.fillStyle = "Cyan";
+    ctx.fillRect(25,80,450,40);
+    ctx.fillStyle = "lightblue";
+    ctx.fillRect(25,130,425,30);
+    ctx.fillRect(25,170,425,30);
+    ctx.fillRect(25,210,425,30);
+    ctx.fillRect(25,250,425,30);
+    ctx.fillStyle = "Pink";
+    ctx.fillRect(525,80,450,40);
+    ctx.fillStyle = "lightgrey";
+    ctx.fillRect(550,130,425,30);
+    ctx.fillRect(550,170,425,30);
+    ctx.fillRect(550,210,425,30);
+    ctx.fillRect(550,250,425,30);
+    if (player.equiped.weapon.slotOne !== "No Item") {
+        //code
+    }
+    ctx.fillStyle = "Cyan";
+    ctx.fillRect(25,290,450,40);
+    ctx.fillStyle = "lightblue";
+    ctx.fillRect(25,340,425,30);
+    ctx.fillRect(25,380,425,30);
+    ctx.fillRect(25,420,425,30);
+    ctx.fillRect(25,460,425,30);
+    ctx.fillStyle = "Pink";
+    ctx.fillRect(525,290,450,40);
+    ctx.fillStyle = "lightgrey";
+    ctx.fillRect(550,340,425,30);
+    ctx.fillRect(550,380,425,30);
+    ctx.fillRect(550,420,425,30);
+    ctx.fillRect(550,460,425,30);
+    if (player.equiped.weapon.slotTwo !== "No Item") {
+        //code
+    }
+    ctx.fillStyle = "Cyan";
+    ctx.fillRect(25,500,450,40);
+    ctx.fillStyle = "lightblue";
+    ctx.fillRect(25,550,425,30);
+    ctx.fillRect(25,590,425,30);
+    ctx.fillRect(25,630,425,30);
+    ctx.fillRect(25,670,425,30);
+    ctx.fillStyle = "Pink";
+    ctx.fillRect(525,500,450,40);
+    ctx.fillStyle = "lightgrey";
+    ctx.fillRect(550,550,425,30);
+    ctx.fillRect(550,590,425,30);
+    ctx.fillRect(550,630,425,30);
+    ctx.fillRect(550,670,425,30);
+    
+    if (player.equiped.weapon.slotThree !== "No Item") {
+        //code
+    }
+    }
+  }
 
 setInterval(fileHandeler,10);
+setInterval(combatPhase,1);
 setInterval(changeCurrent,10);
 setInterval(periodicUpdateC,500);
 setInterval(chestHandeler,50);

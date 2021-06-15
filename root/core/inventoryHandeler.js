@@ -57,9 +57,9 @@ var equipmentBoxes = {head:"No Item", body:"No Item", feet:"No Item", misc:"No I
       ctxI.fillStyle = "Green";
       ctxI.fillRect(x+(size/2)+(gap/2)+gap*i+size*i,y+gap+size,size,size);
      if (player.equiped.weapon.slotOne !== "No Item") {
-      equipmentBoxes.weapon.slotOne = {x:x+(size/2)+(gap/2)+gap*i,y:y+gap+size,size:size,conts:player.equiped.weapon.slotOne};
+      equipmentBoxes.weapon.slotOne = {x:x+(size/2)+(gap/2)+gap*i+size*i,y:y+gap+size,size:size,conts:player.equiped.weapon.slotOne};
      }else{
-      equipmentBoxes.weapon.slotOne = {x:x+(size/2)+(gap/2)+gap*i,y:y+gap+size,size:size,conts:"No Item"};      
+      equipmentBoxes.weapon.slotOne = {x:x+(size/2)+(gap/2)+gap*i+size*i,y:y+gap+size,size:size,conts:"No Item"};      
      }
       ctxI.stroke();
      i++;
@@ -67,10 +67,10 @@ var equipmentBoxes = {head:"No Item", body:"No Item", feet:"No Item", misc:"No I
      ctxI.beginPath();
      ctxI.fillStyle = "Orange";
      ctxI.fillRect(x+(size/2)+(gap/2)+gap*i+size*i,y+gap+size,size,size);
-     if (player.equiped.head !== "No Item") {
-      equipmentBoxes.weapon.slotTwo = {x:x+(size/2)+(gap/2)+gap*i,y:y+gap+size,size:size,conts:player.equiped.weapon.slotTwo};
+     if (player.equiped.weapon.slotTwo !== "No Item") {
+      equipmentBoxes.weapon.slotTwo = {x:x+(size/2)+(gap/2)+gap*i+size*i,y:y+gap+size,size:size,conts:player.equiped.weapon.slotTwo};
      }else{
-      equipmentBoxes.weapon.slotTwo = {x:x+(size/2)+(gap/2)+gap*i,y:y+gap+size,size:size,conts:"No Item"};      
+      equipmentBoxes.weapon.slotTwo = {x:x+(size/2)+(gap/2)+gap*i+size*i,y:y+gap+size,size:size,conts:"No Item"};      
      }
      ctxI.stroke();
      i++;
@@ -79,10 +79,10 @@ var equipmentBoxes = {head:"No Item", body:"No Item", feet:"No Item", misc:"No I
      ctxI.fillStyle = "Purple";
      ctxI.fillRect(x+(size/2)+(gap/2)+gap*i+size*i,y+gap+size,size,size);
      ctxI.stroke();
-     if (player.equiped.head !== "No Item") {
-      equipmentBoxes.weapon.slotThree = {x:x+(size/2)+(gap/2)+gap*i,y:y+gap+size,size:size,conts:player.equiped.weapon.slotThree};
+     if (player.equiped.weapon.slotThree !== "No Item") {
+      equipmentBoxes.weapon.slotThree = {x:x+(size/2)+(gap/2)+gap*i+size*i,y:y+gap+size,size:size,conts:player.equiped.weapon.slotThree};
      }else{
-      equipmentBoxes.weapon.slotThree = {x:x+(size/2)+(gap/2)+gap*i,y:y+gap+size,size:size,conts:"No Item"};      
+      equipmentBoxes.weapon.slotThree = {x:x+(size/2)+(gap/2)+gap*i+size*i,y:y+gap+size,size:size,conts:"No Item"};      
      }
      ctxI.fillStyle = "White";
  }
@@ -143,8 +143,8 @@ var numClicked = 0;
         }
        }
        if (equipmentBoxes.weapon.slotThree.conts !== "No Item") {
-        if (e.offsetX >= equipmentBoxes.weapon.slotThree.locParams.x && e.offsetX <= (equipmentBoxes.weapon.slotThree.locParams.x+equipmentBoxes.weapon.slotThree.locParams.size)) {
-            if (e.offsetY >= equipmentBoxes.weapon.slotThree.locParams.y && e.offsetY <= (equipmentBoxes.weapon.slotThree.locParams.y+equipmentBoxes.weapon.slotThree.locParams.size)) {
+        if (e.offsetX >= equipmentBoxes.weapon.slotThree.x && e.offsetX <= (equipmentBoxes.weapon.slotThree.x+equipmentBoxes.weapon.slotThree.size)) {
+            if (e.offsetY >= equipmentBoxes.weapon.slotThree.y && e.offsetY <= (equipmentBoxes.weapon.slotThree.y+equipmentBoxes.weapon.slotThree.size)) {
              pointText = equipmentBoxes.weapon.slotThree.conts.name;
              item = equipmentBoxes.weapon.slotThree;
             }
@@ -184,10 +184,10 @@ cI.addEventListener("mousedown",statsToggle);//displaying stats
   }
   
   function updateArray(a,pos) {
-    a[pos] = "Nothing"
+    a[pos] = "Nothing";
     var newArray = [];
     for (var  i = 0; i < a.length;i++) {
-        if (a[i] !== "nothing") {
+        if (a[i] !== "Nothing") {
             newArray.push(a[i]);
         }
     }
@@ -196,14 +196,13 @@ cI.addEventListener("mousedown",statsToggle);//displaying stats
   
  window.addEventListener("keydown",enterEquipEvent);
   function enterEquipEvent(e) {
-    console.log(e)
     if (e.key == "1") {
       if (togled == true) {
         if (lockedItem !== undefined) {
           if (lockedItem.type == "projWeapon" || lockedItem.type == "spellTome" || lockedItem.type == "magicStaff" || lockedItem.type == "swords1H"||
               lockedItem.type == "swords2H" || lockedItem.type == "blunt1H" || lockedItem.type == "blunt2H" || lockedItem.type == "swordShields") {
             player.equiped.weapon.slotOne = lockedItem;
-            updateArray(player.items,numClicked)
+            player.items = updateArray(player.items,numClicked);
             
           }
         }
@@ -214,7 +213,8 @@ cI.addEventListener("mousedown",statsToggle);//displaying stats
         if (lockedItem !== undefined) {
           if (lockedItem.type == "projWeapon" || lockedItem.type == "spellTome" || lockedItem.type == "magicStaff" || lockedItem.type == "swords1H"||
               lockedItem.type == "swords2H" || lockedItem.type == "blunt1H" || lockedItem.type == "blunt2H" || lockedItem.type == "swordShields") {
-            //code
+            player.equiped.weapon.slotTwo = lockedItem;
+            player.items = updateArray(player.items,numClicked);
           }
         }
       }
@@ -224,7 +224,8 @@ cI.addEventListener("mousedown",statsToggle);//displaying stats
         if (lockedItem !== undefined) {
           if (lockedItem.type == "projWeapon" || lockedItem.type == "spellTome" || lockedItem.type == "magicStaff" || lockedItem.type == "swords1H"||
               lockedItem.type == "swords2H" || lockedItem.type == "blunt1H" || lockedItem.type == "blunt2H" || lockedItem.type == "swordShields") {
-            //code
+            player.equiped.weapon.slotThree = lockedItem;
+            player.items = updateArray(player.items,numClicked);
           }
         }
       }
